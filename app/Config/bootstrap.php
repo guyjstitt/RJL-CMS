@@ -107,5 +107,5 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-//CakePlugin::load('ReportManager',array('bootstrap' => true));
+CakePlugin::load('ReportManager',array('bootstrap' => true));
 
