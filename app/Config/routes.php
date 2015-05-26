@@ -34,7 +34,7 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 	Router::connect('/api/assignments/*', array('controller' => 'rjcases', 'action' => 'getAllCaseAssignments'));
-	Router::connect('/rjl/assignments/*', array('controller' => 'rjcases', 'action' => 'assignments'));
+	Router::connect('/assignments/*', array('controller' => 'rjcases', 'action' => 'assignments'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on
