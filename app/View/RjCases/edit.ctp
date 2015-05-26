@@ -62,7 +62,7 @@ echo $this->Form->create('RjCase',array('id'=>'casForm'));
 </div>
 <div class="row required">
 	<div class="col-md-3">
-		<?php echo $this->Form->input('Charge',array('class'=>'chosen-select required'));?>
+		<?php echo $this->Form->input('Charge',array('class'=>'chosen-select'));?>
 	</div>
 	<?php if ($cur_user['role']!='caseadmin' && $cur_user['role']!='casemanager'): ?>
 	<div class="col-md-3">
