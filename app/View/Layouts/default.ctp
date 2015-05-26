@@ -4,12 +4,12 @@
 	<title>RJLou CMS</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">	    
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<?php 
 		//css
 	    echo $this->Html->css(array('bootstrap.min', 'bootstrap-theme.min','jquery-ui-1.10.4.custom.css','jquery-ui-1.10.4.custom.min.css', 'forms.css'));
 		//layout scripts
 		echo $this->Html->script(array(
-			'jquery-1.10.2.js',
 			'bootstrap.min.js',
 			'jquery-ui-1.10.4.custom.min.js',
 			'dataTable.js'

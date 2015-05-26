@@ -1,0 +1,13 @@
+.assignments {
+	margin-bottom: 30px;
+}
+
+.assignments a:hover {
+	color: #00c453;
+	text-decoration: none;
+	transition: 0.2s ease;
+}
+
+#assignments_paginate a:first-of-type {
+	margin-right: 5px !important;
+}

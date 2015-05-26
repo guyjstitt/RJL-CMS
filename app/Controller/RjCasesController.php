@@ -7,6 +7,44 @@ App::uses('AppController', 'Controller');
  */
 class RjCasesController extends AppController {
     var $components = array('RequestHandler');
+
+    public function assignments() {
+    	
+    }
+
+    public function getAllCaseAssignments() {
+    	$this->layout = 'ajax';
+    	$this->render(false);
+    	$this->loadModel('RjCase');
+    	$this->loadModel('User');
+    	$allCases = $this->RjCase->find('all');
+    	$assignments = $this->User->find('all', array(
+		'group'=>'User.id', 'joins' => array(
+		array(
+			'table' => 'rj_cases_users',
+				'alias' => 'UserRjCase',
+				'type' => 'left',
+				'conditions' => array(
+					'UserRjCase.user_id = User.id'
+				)
+			),
+		array(
+			'alias' => 'RjCaseJoin',
+			'table' => 'rj_cases',
+			'type' => 'left',
+			'conditions' => array(
+				'RjCaseJoin.id = UserRjCase.rj_case_id')
+			)
+		),
+		'fields' => array('RjCaseJoin.*','UserRjCase.*', 'User.*')));
+
+		$data = (object) [
+			'assignments'=> $assignments,
+			'allCases' => $allCases
+		];
+
+    	echo json_encode(array($data));
+    }
 	
 	public function index() {
 		$this->loadModel('RjCase');
