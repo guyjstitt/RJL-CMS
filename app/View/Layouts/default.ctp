@@ -111,6 +111,7 @@
 							  Admin <b class="caret greycaret"></b>
 							</a>
 							<ul class="dropdown-menu">
+								<li><a href="/rjl/assignments/">Facilitator Assignments</a></li>
 								<li><a href="/rjl/Rail/">Rail Component</a></li>
 								<li><a href="/rjl/Messages/">View Announcements</a></li>
 								<li><a href="/rjl/Reasons/">View Case Close Reasons</a></li>
