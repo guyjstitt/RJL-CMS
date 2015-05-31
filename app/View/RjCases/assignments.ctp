@@ -22,10 +22,10 @@
 			    <th>Assignments</th>
 			</thead>
 			<tbody id="table">
-				<tr ng-repeat="assignment in assignments">
+				<tr ng-repeat="assignment in assignments" >
 					<td>{{assignment.User.username}}</td>
 					<td>
-						<a ng-repeat="case in assignment.RjCase" href="/rjl/RjCases/view/{{case.id}}" target="_blank">
+						<a ng-repeat="case in assignment.RjCase" ng-if="case.caseStatus == 'Open - Pending' || case.caseStatus == 'Open - Monitoring'" href="/rjl/RjCases/view/{{case.id}}" target="_blank">
 							<span ng-if="$first && $last">{{case.caseId}}</span>
 							<span ng-if="$first && !($last)">{{case.caseId}}, </span>
 							<span ng-if="!($first) && !($last)">{{case.caseId}}, </span>
