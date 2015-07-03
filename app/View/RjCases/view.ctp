@@ -323,29 +323,34 @@
 <?php endif ?>
 
 <script type="text/javascript">
-	$("#addNote").click(function() {
+
+	$("#addNote").on('click', function (event) {
+		event.preventDefault();
 		var noteContent = $('#noteContent').val();
 			noteDate = $('#noteDate').val();
 			caseId =  $('#ID').val();
 			code = $('#code').val();
 
-		$.ajax({                    
-			 url:'/rjl/Notes/add/',
-			 type:"POST",
-			 data: {Note: {noteDate: noteDate, noteContent: noteContent, rj_case_id: caseId}, Code: {1: {id: code}}},
-			 dataType: 'json'
-			 
-			}).done(function(data){
-				refreshPage();
-			});
+		if (noteContent == "" || noteDate == "" || code == "") {
+			alert('Note validation failed. Please add all note information before submitting.');
+		} else {
+			$.ajax({                    
+				 url:'/rjl/Notes/add/',
+				 type:"POST",
+				 data: {Note: {noteDate: noteDate, noteContent: noteContent, rj_case_id: caseId}, Code: {1: {id: code}}},
+				 dataType: 'json'
+				 
+				}).done(function(data){
+					refreshPage();
+				});
 		}
-	);
-		 
-	  $("#noteDate").datepicker({
-		 dateFormat: 'yy-mm-dd',
-		  changeMonth: true,
-		  changeYear: true,
-		});
+	});
+
+	$("#noteDate").datepicker({
+	 	dateFormat: 'yy-mm-dd',
+	 	changeMonth: true,
+	  	changeYear: true,
+	});
 	
 	function AppendTable(nArray){
 		row = "<td></td><td>"+nArray.Note.noteDate+"</td><td>"+nArray.Code.code+"</td><td>"+nArray.Note.noteContent+"</td>";
