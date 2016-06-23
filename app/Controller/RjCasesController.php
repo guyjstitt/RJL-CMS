@@ -57,7 +57,11 @@ class RjCasesController extends AppController {
 		$closed=$this->RjCase->find('count', array('conditions'=>array('RjCase.caseStatus'=>'Closed')));
 			
 		$data = $this->RjCase->find('all', array(
-		'group'=>'RjCase.id', 'conditions' => array('RjCase.caseStatus'=>'Open - Monitoring', 'RjCase.caseStatus'=>'Open - Pending'), 'joins' => array(
+		'group'=>'RjCase.id', 'conditions' => array('OR' => array(
+			array('RjCase.caseStatus LIKE'=>'Open - Monitoring'), 
+			array('RjCase.caseStatus LIKE'=>'Open - Pending')
+		)),
+		'joins' => array(
 		array(
 			'table' => 'offenders_rj_cases',
 				'alias' => 'OffendersRjCase',
