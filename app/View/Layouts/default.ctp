@@ -50,7 +50,8 @@
 								  Cases <b class="caret greycaret"></b>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="/rjl/RjCases/index/">View Cases</a></li>
+									<li><a href="/rjl/RjCases/index/">View Open Cases</a></li>
+									<li><a href="/rjl/RjCases/closedCases/">View Closed Cases</a></li>
 									<li><a href="/rjl/RjCases/add">Add Case</a></li>
 								</ul>
 						  </li>

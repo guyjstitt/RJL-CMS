@@ -12,6 +12,52 @@ class RjCasesController extends AppController {
     	
     }
 
+	public function closedCases() {
+		$this->loadModel('RjCase');
+
+		$data = $this->RjCase->find('all', array(
+			'group'=>'RjCase.id',
+			'conditions' => array('RjCase.caseStatus'=>'Closed'),
+			'joins' => array(
+				array(
+					'table' => 'offenders_rj_cases',
+					'alias' => 'OffendersRjCase',
+					'type' => 'left',
+					'conditions' => array(
+						'OffendersRjCase.rj_case_id = RjCase.id'
+					)
+				),
+				array(
+					'alias' => 'OffenderJoin',
+					'table' => 'offenders',
+					'type' => 'left',
+					'conditions' => array(
+						'OffenderJoin.id = OffendersRjCase.offender_id')
+				),
+
+				array(
+					'table' => 'rj_cases_victims',
+					'alias' => 'RjCasesVictim',
+					'type' => 'left',
+					'conditions' => array(
+						'RjCasesVictim.rj_case_id = RjCase.id'
+					)
+				),
+				array(
+					'alias' => 'VictimJoin',
+					'table' => 'victims',
+					'type' => 'left',
+					'conditions' => array(
+						'VictimJoin.id = RjCasesVictim.victim_id')
+				)
+			),
+			'fields' => array('OffenderJoin.id', 'OffenderJoin.firstName', 'OffenderJoin.lastName','OffendersRjCase.*','RjCasesVictim.*','VictimJoin.id', 'VictimJoin.firstName', 'VictimJoin.lastName', 'RjCase.id', 'RjCase.caseId', 'RjCase.caseStatus')));
+
+		$this->set('items', $data);
+
+		$this->render('/RjCases/index');
+	}
+
     public function getAllCaseAssignments() {
     	$this->layout = 'ajax';
     	$this->render(false);
