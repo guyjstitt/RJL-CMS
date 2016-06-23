@@ -15,9 +15,6 @@ class HomeController extends AppController {
     //put your code here
     public function index()
     {
-	
-		
-		
 		$this->loadModel('RjCase');
 		$this->loadModel('User');
 		$this->loadModel('Victim');
@@ -108,7 +105,7 @@ class HomeController extends AppController {
 ));
 */	
 	$data = $this->RjCase->find('all', array(
-			'group'=>'RjCase.id', 'joins' => array(
+			'group'=>'RjCase.id', 'conditions' => array('RjCase.caseStatus'=>'Open - Monitoring', 'RjCase.caseStatus'=>'Open - Pending'), 'joins' => array(
 			array(
 				'table' => 'offenders_rj_cases',
 					'alias' => 'OffendersRjCase',
